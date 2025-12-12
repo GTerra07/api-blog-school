@@ -2,7 +2,7 @@ import { PrismaService } from '../../src/database/prisma.service';
 
 /**
  * Mock do PrismaService para uso em testes unitários
- * 
+ *
  * Este mock implementa todas as funcionalidades necessárias do PrismaService
  * para que os testes unitários possam ser executados sem depender de um banco de dados real.
  */

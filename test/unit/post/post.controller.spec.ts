@@ -7,12 +7,16 @@ import { SearchPostsDto } from '../../../src/post/dto/search-posts.dto';
 
 // Mock do PostService
 const mockPostService = {
-  create: jest.fn().mockImplementation(dto => Promise.resolve({ id: 1, ...dto })),
+  create: jest
+    .fn()
+    .mockImplementation((dto) => Promise.resolve({ id: 1, ...dto })),
   findAll: jest.fn().mockImplementation(() => Promise.resolve([])),
-  findOne: jest.fn().mockImplementation(id => Promise.resolve({ id })),
-  update: jest.fn().mockImplementation((id, dto) => Promise.resolve({ id, ...dto })),
-  remove: jest.fn().mockImplementation(id => Promise.resolve({ id })),
-  search: jest.fn().mockImplementation(dto => Promise.resolve([])),
+  findOne: jest.fn().mockImplementation((id) => Promise.resolve({ id })),
+  update: jest
+    .fn()
+    .mockImplementation((id, dto) => Promise.resolve({ id, ...dto })),
+  remove: jest.fn().mockImplementation((id) => Promise.resolve({ id })),
+  search: jest.fn().mockImplementation((dto) => Promise.resolve([])),
 };
 
 describe('PostController', () => {
@@ -154,7 +158,10 @@ describe('PostController', () => {
 
       // Assert
       expect(result).toEqual(expectedResult);
-      expect(mockPostService.update).toHaveBeenCalledWith(+postId, updatePostDto);
+      expect(mockPostService.update).toHaveBeenCalledWith(
+        +postId,
+        updatePostDto,
+      );
     });
   });
 

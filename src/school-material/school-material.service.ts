@@ -5,15 +5,14 @@ import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
 export class SchoolMaterialService {
-
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   create(createSchoolMaterialDto: CreateSchoolMaterialDto) {
     const shcoolMaterial = this.prisma.schoolMaterial.create({
-      data:{
-        name: createSchoolMaterialDto.name
-      }
-    })
+      data: {
+        name: createSchoolMaterialDto.name,
+      },
+    });
     return shcoolMaterial;
   }
 
@@ -22,21 +21,21 @@ export class SchoolMaterialService {
   }
 
   findOne(id: number) {
-    return this.prisma.schoolMaterial.findUnique({where: {id}});
+    return this.prisma.schoolMaterial.findUnique({ where: { id } });
   }
 
   update(id: number, updateSchoolMaterialDto: UpdateSchoolMaterialDto) {
     return this.prisma.schoolMaterial.update({
-      where: {id},
+      where: { id },
       data: {
-        name: updateSchoolMaterialDto.name
-      }
+        name: updateSchoolMaterialDto.name,
+      },
     });
   }
 
   remove(id: number) {
-    return this.prisma.comment.delete({
-      where: {id}
+    return this.prisma.schoolMaterial.delete({
+      where: { id },
     });
   }
 }

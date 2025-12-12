@@ -6,8 +6,7 @@ import { Person } from './entities/person.entity';
 
 @Injectable()
 export class PersonService {
-
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   create(createPersonDto: CreatePersonDto) {
     const person = this.prisma.person.create({
@@ -17,8 +16,8 @@ export class PersonService {
         isTeacher: createPersonDto.isTeacher,
         name: createPersonDto.name,
         password: createPersonDto.password,
-      }
-    })
+      },
+    });
     return person;
   }
 
@@ -28,11 +27,14 @@ export class PersonService {
 
   findOne(id: number) {
     return this.prisma.person.findFirst({
-      where: { id }
+      where: { id },
     });
   }
 
-  async login(email: string, password: string): Promise<{ isSuccess: boolean; person: Person | null }> {
+  async login(
+    email: string,
+    password: string,
+  ): Promise<{ isSuccess: boolean; person: Person | null }> {
     const person = await this.prisma.person.findUnique({
       where: {
         email,
@@ -55,11 +57,11 @@ export class PersonService {
         isTeacher: updatePersonDto.isTeacher,
         name: updatePersonDto.name,
         password: updatePersonDto.password,
-      }
+      },
     });
   }
 
   remove(id: number) {
-    return this.prisma.person.delete({where: {id}});
+    return this.prisma.person.delete({ where: { id } });
   }
 }

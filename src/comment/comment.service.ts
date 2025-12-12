@@ -5,7 +5,6 @@ import { PrismaService } from 'src/database/prisma.service';
 
 @Injectable()
 export class CommentService {
-
   constructor(private prisma: PrismaService) {}
 
   create(createCommentDto: CreateCommentDto) {
@@ -14,9 +13,9 @@ export class CommentService {
         content: createCommentDto.content,
         postid: createCommentDto.postid,
         published: createCommentDto.published,
-        personid: createCommentDto.personid
-      }
-    })
+        personid: createCommentDto.personid,
+      },
+    });
     return comment;
   }
 
@@ -24,7 +23,7 @@ export class CommentService {
     return this.prisma.comment.findMany({
       where: {
         postid: postId,
-      }
+      },
     });
   }
 
@@ -32,30 +31,30 @@ export class CommentService {
     return this.prisma.comment.findMany({
       where: {
         postid: postId,
-        published: true
-      }
+        published: true,
+      },
     });
   }
 
   findOne(id: number) {
     return this.prisma.comment.findFirst({
-      where: {id}
+      where: { id },
     });
   }
 
   update(id: number, updateCommentDto: UpdateCommentDto) {
     return this.prisma.comment.update({
-      where: {id},
+      where: { id },
       data: {
         content: updateCommentDto.content,
-        published: updateCommentDto.published
-      }
+        published: updateCommentDto.published,
+      },
     });
   }
 
   remove(id: number) {
-    return this.prisma.post.delete({
-      where: {id}
+    return this.prisma.comment.delete({
+      where: { id },
     });
   }
 }

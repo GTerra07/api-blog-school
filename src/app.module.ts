@@ -4,10 +4,11 @@ import { CommentModule } from './comment/comment.module';
 import { PersonModule } from './person/person.module';
 import { SchoolMaterialModule } from './school-material/school-material.module';
 import { PrismaService } from './database/prisma.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [PostModule, CommentModule, PersonModule, SchoolMaterialModule],
-  controllers: [],
+  controllers: [AppController],
   providers: [PrismaService],
   exports: [PrismaService],
 })
